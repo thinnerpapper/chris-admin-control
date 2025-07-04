@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CHRIS Client Onboarding Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f4; }
+        h2 { color: #333; }
+        form { background: #fff; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        label { display: block; margin: 15px 0 5px; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        button { margin-top: 20px; padding: 10px 20px; background: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .note { font-size: 0.9em; color: #555; margin-top: -10px; }
+    </style>
+</head>
+<body>
+    <h2>CHRIS Client Service Request</h2>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+        <label for="name">Your Name</label>
+        <input type="text" name="name" required>
+
+        <label for="business_name">Business/Organization Name</label>
+        <input type="text" name="business_name" required>
+
+        <label for="email">Your Email Address</label>
+        <input type="email" name="email" required>
+
+        <label for="service_type">Choose a Service Type</label>
+        <select name="service_type" required onchange="toggleInstructions(this.value)">
+            <option value="">Select...</option>
+            <option value="one_time">One-Time Service (Dynamic Pricing)</option>
+            <option value="monthly_subscription">Monthly Subscription ($70/month)</option>
+            <option value="yearly_subscription">Yearly Subscription ($450/year)</option>
+        </select>
+
+        <div class="note" id="dynamicNote" style="display:none;">
+            <p>
+                📩 After submitting this form, a CHRIS Marketing AI (CHRIS 2) will contact you to review the job details
+                and determine a fair, custom price. Once the price is agreed upon and payment is received, the task
+                will be scheduled and executed by CHRIS 4 and the Worker AIs.
+            </p>
+        </div>
+
+        <label for="customization">Describe your business needs, tasks, or automation goals for CHRIS</label>
+        <textarea name="customization" rows="6" required></textarea>
+
+        <label for="notes">Any additional notes or setup instructions?</label>
+        <textarea name="notes" rows="4"></textarea>
+
+        <button type="submit">Submit Request</button>
+    </form>
+
+    <script>
+        function toggleInstructions(value) {
+            const note = document.getElementById("dynamicNote");
+            if (value === "one_time") {
+                note.style.display = "block";
+            } else {
+                note.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
